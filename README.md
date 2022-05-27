@@ -13,7 +13,9 @@ This will publish rest api  at `localhost:8080/text` and also there is one Postm
   suffix: "",
   length: ""
 }
+
 file parameter supports multiple format such as PDF, DOCX etc.
+
 length parameter is not functional yet.
 
 # Overall Architecture
