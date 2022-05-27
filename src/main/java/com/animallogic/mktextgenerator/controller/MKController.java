@@ -33,7 +33,7 @@ public class MKController {
             return  ResponseEntity.ok(textGenerator.generateText(file.getInputStream(), prefix, suffix, length));
         } catch (Exception e) {
             e.printStackTrace();
+            return ResponseEntity.ok("There is some internal server issue occurred while generating text");
         }
-        return ResponseEntity.ok("Generated TEXT");
     }
 }
