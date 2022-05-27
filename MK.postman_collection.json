@@ -1,0 +1,52 @@
+{
+	"info": {
+		"_postman_id": "4888296b-630a-4758-a9d6-8901b9b11a78",
+		"name": "MK",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Generate Text",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/sanjaydutt/Downloads/mk-text-generator/src/test/resources/300.pdf"
+						},
+						{
+							"key": "prefix",
+							"value": "army",
+							"type": "text"
+						},
+						{
+							"key": "suffix",
+							"value": "Leonidas",
+							"type": "text"
+						},
+						{
+							"key": "length",
+							"value": "1000",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/text",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"text"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
