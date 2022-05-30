@@ -9,11 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.io.File;
 
 
-@SpringBootTest
-public class FlatFileReaderTest {
-    @Autowired
-    private ItemReader itemReader;
 
+public class FlatFileReaderTest {
 
     @Test
     public void test() throws Exception {

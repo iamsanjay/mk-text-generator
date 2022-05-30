@@ -1,7 +1,9 @@
 package com.animallogic.mktextgenerator.controller;
 
 import com.animallogic.mktextgenerator.service.TextGenerator;
+import org.apache.tika.exception.ZeroByteFileException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,13 +29,18 @@ public class MKController {
     @PostMapping("/text")
     public ResponseEntity<String> generateText(@RequestParam MultipartFile file, @RequestParam String prefix,
                                                @RequestParam String suffix,
-                                               @RequestParam(required = false, defaultValue = "100") int length){
-
-        try {
+                                               @RequestParam(required = false, defaultValue = "100") int length) throws Exception{
             return  ResponseEntity.ok(textGenerator.generateText(file.getInputStream(), prefix, suffix, length));
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.ok("There is some internal server issue occurred while generating text");
-        }
+
+    }
+
+    @ExceptionHandler(value = ZeroByteFileException.class)
+    public ResponseEntity<String> emptyFile(){
+        return  ResponseEntity.status(500).body("File cannot be empty.");
+    }
+
+    @ExceptionHandler(value = Exception.class)
+    public ResponseEntity<String> someException(Exception e){
+        return ResponseEntity.status(500).body("Some internal error occurred while generating text "+e.getMessage());
     }
 }
